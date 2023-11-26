@@ -55,7 +55,10 @@ The project is structured as follows:
 
 ## Routes
 
--`/`: Main content page. -`/list/:list`: Category products page. -`/cart/:cartStatus`: Cart page. -`/detail/:category/:product`: Product detail page.
+- `/`: Main content page.
+- `/list/:list`: Category products page.
+- `/cart/:cartStatus`: Cart page.
+- `/detail/:category/:product`: Product detail page.
 
 ## Components
 
