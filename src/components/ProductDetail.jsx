@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { CartContext } from "../App";
 import { useParams } from "react-router-dom";
 import Button from "./Button";
+import AddedToCartPopup from "./AddedToCartPopup";
 
 import category_list from "../data/categoryList";
 const sizeOption = ["XS", "S", "M", "L", "XL"];
@@ -11,6 +12,7 @@ function ProductDetail() {
 	const [size, setSize] = useState("M");
 	const [quantity, setQuantity] = useState(1);
 	const { cartItems, setCartItems } = useContext(CartContext);
+	const [isAddToCartClicked, setIsAddToCartClicked] = useState(false);
 
 	const params = useParams();
 	const category = category_list.find(
@@ -21,6 +23,7 @@ function ProductDetail() {
 	);
 
 	function handleAddToCart() {
+		setIsAddToCartClicked(true);
 		const addedItemIndex = cartItems.findIndex(
 			(item) => item.name === product.name && item.size === size
 		);
@@ -37,7 +40,7 @@ function ProductDetail() {
 
 	return (
 		<div className="product_detail_box">
-			<img src={product.image} alt="" />
+			<img className="product_img" src={product.image} alt={product.image} />
 			<div className="product_description">
 				<h2>{product.title}</h2>
 				<p className="product_price">${product.price}</p>
@@ -89,6 +92,9 @@ function ProductDetail() {
 					<Button text="ADD TO CART" />
 				</div>
 			</div>
+			{isAddToCartClicked && (
+				<AddedToCartPopup setIsAddToCartClicked={setIsAddToCartClicked} />
+			)}
 		</div>
 	);
 }
